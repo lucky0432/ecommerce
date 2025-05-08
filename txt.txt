@@ -1,0 +1,10 @@
+<p className='qty'>{qty[d.ProId] || 0}</p>
+function handleIncrement(e){
+        // alert(e.target.id);
+        const id = parseInt(e.target.id);
+        setQty((prevQty)=>({
+            ...prevQty,
+            [id]: (prevQty[id] ||0 ) + 1
+        }))
+    }
+    const [qty, setQty] = useState(0);
