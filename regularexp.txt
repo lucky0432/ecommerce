@@ -1,0 +1,56 @@
+Regular expressions (RegEx) are powerful tools for pattern matching in strings. A full pattern depends on the specific use case, but here are some commonly used ones:
+Common Full Patterns:
+- Email Validation: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+- Phone Number (US Format): /^\(\d{3}\) \d{3}-\d{4}$/
+- URL Validation: /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/
+- Date Format (YYYY-MM-DD): /^\d{4}-\d{2}-\d{2}$/
+- Hex Color Code: /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/
+- Password Strength Check: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+For a complete guide on regular expressions, you can check out this cheat sheet or this detailed explanation. Let me know if you need help with a specific pattern! 🚀
+
+
+
+
+import React from 'react';
+
+export default class MyForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            regExp: '',
+            isValid: null
+        };
+    }
+
+    mySubmitHandler = (event) => {
+        event.preventDefault(); // Prevent form from submitting for validation
+        
+        const { regExp } = this.state; // Get current input value
+        const regExps = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        if (regExps.test(regExp)) {
+            alert('Success: Valid email format!');
+        } else {
+            alert('Error: Invalid email format!');
+        }
+    };
+
+    myChangeHandler = (event) => {
+        this.setState({ regExp: event.target.value });
+    };
+
+    render() {
+        return (
+            <form onSubmit={this.mySubmitHandler}>
+                <p>Enter Email</p>
+                <input
+                    type='email'
+                    onChange={this.myChangeHandler}
+                    value={this.state.regExp}
+                    required
+                />
+                <input type='submit' />
+            </form>
+        );
+    }
+}
